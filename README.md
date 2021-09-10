@@ -1,1 +1,2 @@
-# blockchain-developer-bootcamp-final-project
+# StepCoin - Proof of Health
+Convert your steps into StepCoin
