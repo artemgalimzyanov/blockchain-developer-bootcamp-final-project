@@ -21,12 +21,6 @@ it ("should make first account as owner", async () =>{
   assert.equal(_owner, owner, 'This is no owner');
 });
 
-// // 2 alice should NOT be enroll to the program
-// it ("alice should NOT be enrolled to the program", async () =>{
-  
-//   enroll = await instance.enrolled(alice);
-//   assert.equal(enroll, false, 'She is enrolled');
-// });
   
 // 2 bob should add the award
 it ("bob should add the award", async () =>{
@@ -39,13 +33,6 @@ it ("bob should add the award", async () =>{
   );
 
 });
-
-// // 4 alice should enroll to the Program
-// it ("alice should BE enrolled to the program NOW", async () =>{
-//   await instance.enroll({from: alice});
-//   enrollAlice = await instance.enrolled(alice);
-//   assert.equal(enrollAlice, true, 'She DOES NOT enrolled');
-// });
 
 
 // 3 alice should deposit steps and get coins

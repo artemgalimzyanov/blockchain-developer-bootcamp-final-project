@@ -14,7 +14,7 @@ User:
 4. Redeem Stepcoints for a discount to a gym
 
 Businesses:
-1. Get access to the target audience (fit & health)
+1. Get access to the target audience (fit & healthly)
 2. Promote new products
 3. Sell sport event tickets (NFT)
 
@@ -26,7 +26,7 @@ Businesses:
 
 # Public Deployed version of dApp:
 -https://mydApp.io
-
+ 
 # Prerequisites
 - node.js 14.17.x
 - npm 6.14.x
@@ -55,7 +55,7 @@ Businesses:
 
 
 # Screencast link
--link is here
+-`https://www.loom.com/share/a7f57fc01c7248799e204ea0b6a443ee`
 
 # Public ETH address for certification
 `0x325173bC8C0F68eA1384de0377786EA3284Cf2FB`
