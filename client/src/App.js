@@ -1,5 +1,5 @@
 import React, { Component, useState} from 'react';
-//import {useEffect} from 'react';
+import {useEffect} from 'react';
 import StepCoinContract from "./contracts/StepCoin.json";
 import Web3 from 'web3'
 import './App.css'
@@ -21,18 +21,48 @@ class App extends Component {
       newAwardPrice: 0,
       loading: true,
       newPurchaseId: 1,
-      newUsedId: 1
+      newUsedId: 1,
+      MM: false
      
      }
 
   }
   
-  
   async componentWillMount() {
-      await this.connectWallet();
       
       try {
-        // Get network provider and web3 instance.
+
+      } catch (error) {
+        // Catch any errors for any of the above operations.
+        alert(
+          `Failed to load web3, accounts, or contract. Check console for details.`,
+        );
+        console.error(error);
+      }
+
+  }
+
+
+  handleUserConnecttoMM = async (event) => {
+      console.log("I am clicking");
+    if(window.ethereum){
+      window.web3 = new Web3(window.ethereum)
+      await window.ethereum.enable()
+    }
+    else if (window.web3) {
+      window.web3 = new Web3(window.web3.currentProvider)
+    }
+    else{
+      window.alert('Please install MetaMask')
+    }
+    this.state.MM = true;
+    
+    this.loadBlockchain();
+   
+  }
+    
+  loadBlockchain = async () =>{
+      // Get network provider and web3 instance.
         const web3 = window.web3;
 
         // Get the contract instance.
@@ -64,46 +94,8 @@ class App extends Component {
         });
         
         this.refreshUserBalance();
-
-      } catch (error) {
-        // Catch any errors for any of the above operations.
-        alert(
-          `Failed to load web3, accounts, or contract. Check console for details.`,
-        );
-        console.error(error);
-      }
-
   }
 
-
-  // handleUserConnecttoMM = async (event) => {
-  //   console.log("I am clicking");
-  //   if(window.ethereum){
-  //     window.web3 = new Web3(window.ethereum)
-  //     await window.ethereum.enable()
-  //   }
-  //   else if (window.web3) {
-  //     window.web3 = new Web3(window.web3.currentProvider)
-  //   }
-  //   else{
-  //     window.alert('Please install MetaMask')
-  //   }
-
-  //  // this.refreshUserBalance();
-  // }
-    
-  async connectWallet() {
-    if(window.ethereum){
-      window.web3 = new Web3(window.ethereum)
-      await window.ethereum.enable()
-    }
-    else if (window.web3) {
-      window.web3 = new Web3(window.web3.currentProvider)
-    }
-    else{
-      window.alert('Please install MetaMask')
-    }
-  }
 
   setStatus = (message) => {
     document.getElementById("status").innerHTML = message;
@@ -218,15 +210,11 @@ class App extends Component {
   getProductInfo = async () => { 
     document.getElementById("productInfo").style.display = 'block';
     try {
-      // const awardCount =  await this.state.contract.methods.awardCount().call();
-      // if (this.state.idForInfo> awardCount){
-      //   document.getElementById("productInfo").innerHTML = "This product doesn't exist";
-      // }
 
       //get award name
       const productInfo = await this.state.contract.methods.fetchAward(this.state.idForInfo-1).call();
       document.getElementById("_name").innerHTML = productInfo[0];
-      //console.log(productInfo);
+      
 
       // check award status: new  - for sale - sold
       if (productInfo[3]==0 ){
@@ -238,7 +226,7 @@ class App extends Component {
       if (productInfo[3]==2){
         document.getElementById("_forSale").innerHTML = "Used";
       } 
-      //else {document.getElementById("_forSale").innerHTML = "Used";};
+      
 
       //get award price
       document.getElementById("_price").innerHTML = productInfo[2];
@@ -309,9 +297,11 @@ class App extends Component {
               Your Step coin balance is  <strong className="balance">loading...</strong> <br/>
               Your Awards: <strong id="products">loading...</strong> <br/>
              
-
+          <Button size="medium" mainColor="#B26200" value="submit" onClick={this.handleUserConnecttoMM}>{this.state.MM ? "Connected" : "Connect your wallet"}</Button>
+          
           <ToastMessage.Provider ref={node => (window.toastProvider = node)} />
           <Button size="small" mainColor="Black" value="submit" onClick={this.handleUserEnroll}>Please Enroll</Button>
+          
           
           
           </Box>
@@ -372,7 +362,7 @@ class App extends Component {
 
             
     
-            <Box bg="#D3D3D3" border='3px solid' borderColor="DarkGrey" p={3} width={1 / 3}>
+            <Box bg="#D3D3D3" border='3px solid' borderColor="Black" p={3} width={1 / 3}>
               <Heading> Redeem your StepCoin on Award </Heading>
                 <Form>
                 <Box>
@@ -407,17 +397,6 @@ class App extends Component {
             <Box width={1 / 40}></Box>
           </Flex>
       </div>
-
-
-
-
-
-
-
- 
-
-
-
 
       </div>
       
