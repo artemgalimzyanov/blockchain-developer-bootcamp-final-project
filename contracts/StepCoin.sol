@@ -12,11 +12,11 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract StepCoin is Ownable {
 
-/// state variables
+/// @dev state variables
   uint public awardCount;
   bool public paused = false;
 
-
+/// @dev declare modifiers
 modifier whenNotPaused () {
     require (!paused);
     _;
@@ -41,23 +41,21 @@ modifier Redeemed(uint _i) {
     _;
   }
 
-  /// enrollment to the StepCoin
-  mapping (address => bool) public enrolled;
-  /// keep clients balances of stepcoints
+  /// @dev create mappling of clients balances of stepcoints
   mapping (address => uint) public balances;
-  /// mapping all awards from shops
+  /// @dev create mapping of all awards from sellers
   mapping (uint256 => Award) public awards;
-  /// mapping of awards per user
+  /// @dev create mapping of awards per user
   mapping (address => string[]) public  List;
 
-  /// enum states of award: New, Redeemed, Used
+  /// @notice define enum states of award: New, Redeemed, Used
   enum State {
     New,
     Redeemed,
     Used
   }
 
-  /// struct Award
+  /// @notice define a struct Award
   struct Award {
     string name;
     uint count;
@@ -67,39 +65,30 @@ modifier Redeemed(uint _i) {
     address payable buyer;
   }
 
-  ///Events
-  event LogEnrolled(address accountAddress);
+  ///@notice define Events
   event LogBalance(address accountAddress, uint amount);
   event LogRedeem(address accountAddress, uint redeemAmount, uint newBalance);
   event Pause();
   event Unpause();
 
-
   constructor() public {
   
   }
 
-// function to enroll to the Program
-  function enroll() public whenNotPaused returns(bool){
-    enrolled[msg.sender] = true;
-    emit LogEnrolled(msg.sender);
-    return enrolled[msg.sender];
-  }
-
-/// function to deposit steps and get Stepcoins
+/// @notice function to deposit steps and get Stepcoins
   function depositSteps(uint step) public payable whenNotPaused returns (uint) {
-    require(enrolled[msg.sender]== true, "Please enroll");
+    
     balances[msg.sender] += step;
     emit LogBalance(msg.sender, balances[msg.sender]);
     return balances[msg.sender];
   }
 
-/// function to check balance of Users awards
+/// @notice function to check availabe awards of specific user
   function checkmyAwards() public view returns(string[] memory){
     return List[msg.sender];
   }
 
-/// function to add Award to the site
+/// @notice function to add Award to the dApp
   function addAward(string memory _name, uint _price) public whenNotPaused returns(bool){
     awards[awardCount] = Award({
       name: _name,
@@ -114,7 +103,7 @@ modifier Redeemed(uint _i) {
     return true;
   }
 
-/// function to buy Award with StepCoins  
+/// @notice function to buy Award with StepCoins  
 function buyAward(uint _i)  public payable forSale(_i)  paidEnough(_i) whenNotPaused returns (uint){
     awards[_i].buyer = payable (msg.sender);
     awards[_i].state = State.Redeemed;
@@ -124,24 +113,28 @@ function buyAward(uint _i)  public payable forSale(_i)  paidEnough(_i) whenNotPa
     return balances[msg.sender];
 }
 
-/// function to use Award
+/// @notice function to use Award
+/// @dev only seller can change status of award from redeemed to used
   function useAward(uint _i) public payable whenNotPaused Redeemed(_i) returns(bool){
     require (awards[_i].seller == msg.sender, "You are not a seller");
     awards[_i].state = State.Used;
     return true;
   }
 
+/// @notice function to pause a contract
   function pause() public onlyOwner whenNotPaused returns(bool){
     paused = true;
     emit Pause();
     return true;
   }
 
+/// @notice function to unpause a contract
   function unpause() public onlyOwner whenPaused {
     paused = false;
     emit Unpause();
   }
 
+/// @notice function to get info about any award
   function fetchAward(uint _i) public view 
     returns (string memory name, uint count, uint price, uint state, address seller, address buyer) 
   {
