@@ -12,7 +12,6 @@ class App extends Component {
     this.state = { 
       account: '',
       contract: 'underfined',
-      isEnroll: false,
       currentBalance: 0,
       idForInfo: 1,
       userSteps: 0,
@@ -78,7 +77,6 @@ class App extends Component {
   
         // Get state variables
         const _account = web3.utils.toChecksumAddress(accounts[0]);
-        const _checkEnrollStatus = await StepCoin.methods.enrolled(accounts[0]).call({from: accounts[0]});
         const _balance = await StepCoin.methods.balances(accounts[0]).call({from: accounts[0]});
   
         // Set web3, accounts, and contract to the state
@@ -87,9 +85,7 @@ class App extends Component {
           account: _account,
           contract: StepCoin,
           balance: _balance,
-          isEnroll: _checkEnrollStatus,
           awardlist: [],
-          
           
         });
         
@@ -134,19 +130,19 @@ class App extends Component {
   
    }
 
-  handleUserEnroll = async (event) => {
+  // handleUserEnroll = async (event) => {
     
-    if (typeof this.state.contract !== 'undefined') {
-      event.preventDefault();
-      await this.state.contract.methods.enroll().send({from: this.state.account})
-    }
-    this.setStatus("Initiating transaction... (please wait)");
-    window.toastProvider.addMessage("You are enrolling", {
-      variant: "success"
-    })
-    this.setStatus("Transaction complete!");
-    this.refreshUserBalance();
-  }
+  //   if (typeof this.state.contract !== 'undefined') {
+  //     event.preventDefault();
+  //     await this.state.contract.methods.enroll().send({from: this.state.account})
+  //   }
+  //   this.setStatus("Initiating transaction... (please wait)");
+  //   window.toastProvider.addMessage("You are enrolling", {
+  //     variant: "success"
+  //   })
+  //   this.setStatus("Transaction complete!");
+  //   this.refreshUserBalance();
+  // }
 
   handleSetUserStepDeposit = async (event) => {
     
@@ -215,7 +211,6 @@ class App extends Component {
       const productInfo = await this.state.contract.methods.fetchAward(this.state.idForInfo-1).call();
       document.getElementById("_name").innerHTML = productInfo[0];
       
-
       // check award status: new  - for sale - sold
       if (productInfo[3]==0 ){
         document.getElementById("_forSale").innerHTML = "For Sale";
@@ -227,7 +222,6 @@ class App extends Component {
         document.getElementById("_forSale").innerHTML = "Used";
       } 
       
-
       //get award price
       document.getElementById("_price").innerHTML = productInfo[2];
       } catch (error) {
@@ -268,7 +262,6 @@ class App extends Component {
 }
 
 
-
   render() {
     return (
       <div>
@@ -299,11 +292,7 @@ class App extends Component {
              
           <Button size="medium" mainColor="#B26200" value="submit" onClick={this.handleUserConnecttoMM}>{this.state.MM ? "Connected" : "Connect your wallet"}</Button>
           
-          <ToastMessage.Provider ref={node => (window.toastProvider = node)} />
-          <Button size="small" mainColor="Black" value="submit" onClick={this.handleUserEnroll}>Please Enroll</Button>
-          
-          
-          
+
           </Box>
           <Box width={1 / 5}></Box>
           <Box>
