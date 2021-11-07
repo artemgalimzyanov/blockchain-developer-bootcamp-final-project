@@ -25,14 +25,15 @@ Businesses:
 
 
 # Public Deployed version of dApp:
--https://mydApp.io
+- https://stepcoin.netlify.app 
+- Please connect your Metamask with *Ropsten* testnet. If you dont have test ETH in Ropsten, please visit this site https://faucet.ropsten.be/ to get 0.3 ETH.
  
 # Prerequisites
 - node.js 14.17.x
 - npm 6.14.x
 - Metamask extension for browser (e.g, Chrome extension, ver. 10.3.0 +)
 - Truffle 5.4.x : `npm install -g truffle`
-- Optional:
+- <i>Optional:</i>
     - Open Zeppelin library: `npm install @openzeppelin/contracts`
     - Rimple UI: `npm install --save rimble-ui styled-components`
 
@@ -64,4 +65,4 @@ Businesses:
 - Go to the project directory and run `truffle test`
 
 # Contract
-- 0x92E8570474c1BaE9dbc4aB83eDdB7770968F4E59 (Ropsten)
+- `0x92E8570474c1BaE9dbc4aB83eDdB7770968F4E59` (Ropsten)

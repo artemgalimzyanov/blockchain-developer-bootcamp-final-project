@@ -1,8 +1,8 @@
 import React, { Component, useState} from 'react';
 import {useEffect} from 'react';
-//import StepCoinContract from "./contracts/StepCoin.json";
+import StepCoinABI from "./contracts/StepCoin.json";
 import { CONTRACT_ADDRESS_STEPCOIN } from './constants';
-import StepCoinABI from '../../build/contracts/StepCoin.json';
+//import StepCoinABI from '../../build/contracts/StepCoin.json';
 import Web3 from 'web3'
 import './App.css'
 import { Text, Button, Box, Flex, Form, Input, Heading, Field, Select, ToastMessage, Blockie} from 'rimble-ui';
