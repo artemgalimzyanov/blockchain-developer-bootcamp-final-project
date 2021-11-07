@@ -62,3 +62,6 @@ Businesses:
 
 # Testing
 - Go to the project directory and run `truffle test`
+
+# Contract
+- 0x92E8570474c1BaE9dbc4aB83eDdB7770968F4E59 (Ropsten)

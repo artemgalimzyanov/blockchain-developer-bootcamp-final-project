@@ -176,7 +176,16 @@ class App extends Component {
     
     if (typeof this.state.contract !== 'undefined') {
       event.preventDefault();
-      
+      const productInfo = await this.state.contract.methods.fetchAward(this.state.newPurchaseId-1).call();
+      const balance = await this.state.contract.methods.balances(this.state.account).call();
+       
+      if (productInfo[3] !=0 || productInfo[2]>balance){
+          window.toastProvider.addMessage("Sorry! Award sold or not enough balance", {
+          variant: "failure"
+        })
+        this.setStatus("Transaction declined!");
+        this.refreshUserBalance(); 
+      }
       await this.state.contract.methods.buyAward(this.state.newPurchaseId-1).send({from: this.state.account});
     }
     this.setStatus("Initiating transaction... (please wait)");
@@ -192,7 +201,16 @@ class App extends Component {
     
     if (typeof this.state.contract !== 'undefined') {
       event.preventDefault();
-      
+      const productInfo = await this.state.contract.methods.fetchAward(this.state.newUsedId-1).call();
+
+    if (productInfo[4] != this.state.account){
+        window.toastProvider.addMessage("Sorry! You are not a seller", {
+        variant: "failure"
+      })
+      this.setStatus("Transaction declined!");
+      this.refreshUserBalance(); 
+    }
+
       await this.state.contract.methods.useAward(this.state.newUsedId-1).send({from: this.state.account});
     }
     this.setStatus("Initiating transaction... (please wait)");

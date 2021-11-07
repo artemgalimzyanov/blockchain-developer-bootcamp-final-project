@@ -1,0 +1,27 @@
+{
+  "name": "StepCoin",
+  "version": "1.0.0",
+  "description": "## Project Description ### Intoduction Movement is life. One who walks a sufficient distance every day is a healthy person.  A healthy person eats healthy food, goes to the gym, and almost never visits a doctor.",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/artemgalimzyanov/blockchain-developer-bootcamp-final-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/artemgalimzyanov/blockchain-developer-bootcamp-final-project/issues"
+  },
+  "homepage": "https://github.com/artemgalimzyanov/blockchain-developer-bootcamp-final-project#readme",
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.3.2",
+    "@truffle/hdwallet-provider": "^1.6.0",
+    "dotenv": "^10.0.0"
+  }
+}

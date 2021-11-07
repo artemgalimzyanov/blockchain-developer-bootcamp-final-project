@@ -20559,12 +20559,12 @@
         }
       },
       "links": {},
-      "address": "0x7458011c3A5f5Be9B5455211ffBA2a59CcdDe61a",
-      "transactionHash": "0xb8cc9d302526e1e7f0fff722e37bac598427f3b0dd1857695fe3aef14eecf781"
+      "address": "0x7718c45310872730163deba49Fc37f16bE48eD1E",
+      "transactionHash": "0xadd3ebaf236f6ead019425de24b8b260734868ad9d0a77b6a705256d7a9437f0"
     }
   },
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-11-06T17:17:03.456Z",
+  "updatedAt": "2021-11-07T07:00:50.499Z",
   "networkType": "ethereum",
   "devdoc": {
     "author": "Artem Galimzyanov",
