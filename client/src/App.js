@@ -1,6 +1,8 @@
 import React, { Component, useState} from 'react';
 import {useEffect} from 'react';
-import StepCoinContract from "./contracts/StepCoin.json";
+//import StepCoinContract from "./contracts/StepCoin.json";
+import { CONTRACT_ADDRESS_STEPCOIN } from './constants';
+import StepCoinABI from '../../build/contracts/StepCoin.json';
 import Web3 from 'web3'
 import './App.css'
 import { Text, Button, Box, Flex, Form, Input, Heading, Field, Select, ToastMessage, Blockie} from 'rimble-ui';
@@ -43,7 +45,7 @@ class App extends Component {
 
 
   handleUserConnecttoMM = async (event) => {
-      console.log("I am clicking");
+      // console.log("I am clicking");
     if(window.ethereum){
       window.web3 = new Web3(window.ethereum)
       await window.ethereum.enable()
@@ -65,12 +67,14 @@ class App extends Component {
         const web3 = window.web3;
 
         // Get the contract instance.
-        const networkId = await web3.eth.net.getId();
-        const deployedNetwork = StepCoinContract.networks[networkId];
-        const StepCoin = new web3.eth.Contract(
-           StepCoinContract.abi,
-          deployedNetwork && deployedNetwork.address,
-          );
+        // const networkId = await web3.eth.net.getId();
+        // const deployedNetwork = StepCoinContract.networks[networkId];
+        // const StepCoin = new web3.eth.Contract(
+        //    StepCoinContract.abi,
+        //   deployedNetwork && deployedNetwork.address,
+        //   );
+
+        const StepCoin = new web3.eth.Contract(StepCoinABI.abi, CONTRACT_ADDRESS_STEPCOIN);
         
         // Use web3 to get the user's accounts.
         const accounts = await web3.eth.getAccounts();
