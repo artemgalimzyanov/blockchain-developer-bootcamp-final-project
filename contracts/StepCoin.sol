@@ -41,7 +41,7 @@ modifier Redeemed(uint _i) {
     _;
   }
 
-  /// @dev create mappling of clients balances of stepcoints
+  /// @dev create mapping of clients balances of stepcoints
   mapping (address => uint) public balances;
   /// @dev create mapping of all awards from sellers
   mapping (uint256 => Award) public awards;

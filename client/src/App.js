@@ -289,9 +289,9 @@ class App extends Component {
       <div>
         <Box bg="#D3D3D3" border='3px solid' borderColor="DarkGrey">
         <br/>
-        <Heading as={"h1"}> Step Coin dApp  (beta version)</Heading>
+        <Heading as={"h1"}> Step Coin dApp  (beta version - only Ropsten testnet)</Heading>
         <Text fontWeight='bold'> Move and Earn </Text>
-        <Text fontWeight='light'> This dApp motivates you to go out for a walk and earn StepCoin. You can redeem your StepCoin for awards</Text>
+        <Text fontWeight='light'> This dApp motivates you to go out for a walk and earn StepCoin. You can redeem your StepCoin for awards.</Text>
 
         <br/>
         </Box>
@@ -304,7 +304,7 @@ class App extends Component {
         <Flex fontSize={1} textAlign='left'>
           <Box width={1 / 20}></Box>
           <Box id="blockie" width={1 / 20}>
-            <Blockie opts={{seed: String(this.state.account)}} />
+            
           </Box>
           <Box width={1 / 20}></Box>
           <Box width={1 / 5}>
@@ -391,7 +391,7 @@ class App extends Component {
             <Box width={1 / 40}></Box>
 
             <Box bg="#D3D3D3" border='3px solid' borderColor="DarkGrey" p={3} width={1 / 3}>
-              <Heading> Consume Award (only for Seller) <strong>beta</strong></Heading>
+              <Heading> Consume Award (only for Seller)</Heading>
                 <Form>
                 <Box>
                   <Field label="Choose the award you want to consume">
