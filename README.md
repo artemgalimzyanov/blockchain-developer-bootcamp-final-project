@@ -38,7 +38,7 @@ Businesses:
     - Rimple UI: `npm install --save rimble-ui styled-components`
 
 # Folder structure
-- `build`: JSON contract conde (ABI, etc)   -  no need to commit
+
 - `client`: React project front-end UI files
 - `contracts`: Solidity smart contract StepCoin.sol
 - `migrations`: Migrations files for deploying contract from `contracts` folder
