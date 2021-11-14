@@ -1,8 +1,8 @@
 import React, { Component, useState} from 'react';
 import {useEffect} from 'react';
 import StepCoinABI from "./contracts/StepCoin.json";
-import { CONTRACT_ADDRESS_STEPCOIN } from './constants';
-//import StepCoinABI from '../../build/contracts/StepCoin.json';
+
+
 import Web3 from 'web3'
 import './App.css'
 import { Text, Button, Box, Flex, Form, Input, Heading, Field, Select, ToastMessage, Blockie} from 'rimble-ui';
@@ -81,9 +81,8 @@ class App extends Component {
         //    StepCoinContract.abi,
         //   deployedNetwork && deployedNetwork.address,
         //   );
-
-        const StepCoin = new web3.eth.Contract(StepCoinABI.abi, CONTRACT_ADDRESS_STEPCOIN);
-        
+      
+        const StepCoin = new web3.eth.Contract(StepCoinABI.abi, StepCoinABI.networks[3].address);
         // Use web3 to get the user's accounts.
         const accounts = await web3.eth.getAccounts();
   
@@ -142,19 +141,7 @@ class App extends Component {
   
    }
 
-  // handleUserEnroll = async (event) => {
-    
-  //   if (typeof this.state.contract !== 'undefined') {
-  //     event.preventDefault();
-  //     await this.state.contract.methods.enroll().send({from: this.state.account})
-  //   }
-  //   this.setStatus("Initiating transaction... (please wait)");
-  //   window.toastProvider.addMessage("You are enrolling", {
-  //     variant: "success"
-  //   })
-  //   this.setStatus("Transaction complete!");
-  //   this.refreshUserBalance();
-  // }
+
 
   handleSetUserStepDeposit = async (event) => {
     
