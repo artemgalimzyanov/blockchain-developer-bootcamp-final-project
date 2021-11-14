@@ -54,7 +54,7 @@ class App extends Component {
       window.web3 = new Web3(window.web3.currentProvider)
     }
     else{
-      window.alert('Please install MetaMask')
+      window.alert('Please install MetaMask wallet (metamask.io)')
     }
     this.state.MM = true;
     
