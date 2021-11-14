@@ -49,13 +49,21 @@ class App extends Component {
     if(window.ethereum){
       window.web3 = new Web3(window.ethereum)
       await window.ethereum.enable()
+      
+      
+      const networkID = await window.web3.eth.net.getId();
+      if (networkID != 3){
+        window.alert('Please connect to the Ropsten test net')
+      }
     }
     else if (window.web3) {
-      window.web3 = new Web3(window.web3.currentProvider)
+      window.web3 = new Web3(window.web3.currentProvider);
+      
     }
     else{
       window.alert('Please install MetaMask wallet (metamask.io)')
     }
+
     this.state.MM = true;
     
     this.loadBlockchain();

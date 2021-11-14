@@ -52,7 +52,7 @@ Businesses:
 4. Compile and migrate contract: `migrate`
 5. Go to browser, open Metamask, import account by using mnemonic from Step 3.
 6. Open another terminal window, go to the project directory and run `cd client && npm run start`
-7. Open browser `localhost:3000
+7. Open browser `localhost:3000`
 8. Enjoy and play with StepCoin dApp
 
 
@@ -66,7 +66,7 @@ Businesses:
  7. Change status of award to "Used" after delivering it to the User (this section is designed for Business. Only award seller can change status).
 
 # Screencast link
--`https://www.loom.com/share/a7f57fc01c7248799e204ea0b6a443ee`
+- `https://www.loom.com/share/a7f57fc01c7248799e204ea0b6a443ee`
 
 # Public ETH address for certification
 `0x325173bC8C0F68eA1384de0377786EA3284Cf2FB`
