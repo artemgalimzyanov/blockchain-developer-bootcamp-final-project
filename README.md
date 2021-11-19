@@ -18,7 +18,7 @@ Businesses:
 2. Promote new products
 3. Sell sport event tickets (NFT)
 
-### Future plans
+### Future plans for development
 1. Sync sport braslet (and watch) with Oracle, and smart contract can get information about daily steps from Oracle.
 2. Business can airdrop NFT (event tickets) to top runners
 3. Gamification: open competitions for a prize
@@ -72,7 +72,10 @@ Businesses:
 `0x325173bC8C0F68eA1384de0377786EA3284Cf2FB`
 
 # Testing
-- Go to the project root directory and run `truffle test`
+- Go to the project root directory
+- Install `npm` if not yet
+- Run `truffle develop`
+- Run  `test`
 
 # Contract
 - `0x92E8570474c1BaE9dbc4aB83eDdB7770968F4E59` (Ropsten)
